@@ -1,28 +1,10 @@
 import React, { Component } from 'react';
 var Highcharts = require('highcharts');
 
-
-// TWO IMPROVEMENTS
-// 1. OPTIONS from outside
-// 2. DOM render element must be unic
-
 class Chart extends Component {
 
   componentDidMount() {
-    var options = {
-      title: {
-           text: 'Example of Highcharts working from a react component'
-       },
-      chart: {
-        renderTo: 'chart',
-        type: 'line'
-      },
-      series: [{
-        name: 'Evolution of Data',
-        data: [1, 3, 9, 5 ,14]
-      }]
-    };
-    this.chart = new Highcharts.Chart(options);
+    this.chart = new Highcharts.Chart(this.props.container, this.props.options);
   }
 
   componentWillUnmount() {
@@ -30,7 +12,7 @@ class Chart extends Component {
   }
 
   render() {
-    return <div id="chart" />
+    return <div id={this.props.container} />
   }
 }
 
